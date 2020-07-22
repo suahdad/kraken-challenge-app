@@ -1,1 +1,27 @@
-<p>add-vitals works!</p>
+<div class="window">
+    <div class="form">
+        <button class="close" aria-label="Close" (click)="closeWindow()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="body">
+        <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form">
+            <div class="form-group">
+                <input disabled="true" type="text" name="device" id="device" tabindex="1" class="form-control" placeholder="Username" value="11a8bf88-11c3-4dfc-a3e4-a5a30f1ff9cf">
+            </div>
+            <div class="form-group">
+                <input type="text" name="heartrate" id="heartrate" tabindex="2" class="form-control" placeholder="Heart Rate">
+            </div>
+            <div class="form-group">
+                <input type="text" name="temperature" id="temperature" tabindex="3" class="form-control" placeholder="Temperature">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Add Vitals">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>

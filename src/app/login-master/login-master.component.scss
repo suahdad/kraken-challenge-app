@@ -98,19 +98,13 @@ body {
 	border-color: #1CA347;
 }
 
-.window {
-	width: 100vw;
-	height: 100vh;
+.center-body {
+	margin: auto;
 	border: 1px solid green;
-	background: rgba(0,0,0,0.3);
+	height: 100vh;
+	text-align: center;
 }
 
-.form {
-	background: white;
-	padding: 10px 50px;
-	border-radius: 1%;
-	opacity: 1;
-	width: 400px;
-	margin:auto;
+.center {
+	display: inline-block;
 }
-

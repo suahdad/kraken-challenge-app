@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VitalService } from '../services/vital.service';
+import { Vital } from '../models/vital';
 
 @Component({
   selector: 'app-show-vitals',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowVitalsComponent implements OnInit {
 
-  constructor() { }
+  public humanVitals: Vital[] = new Array();
+  public addVital: boolean;
+  public contactUs: boolean = true;
+  public page = 1;
+  constructor( private vitalService: VitalService) { }
 
   ngOnInit(): void {
+    this.vitalService.getVitals().subscribe(data => {
+      this.humanVitals = data.humanVitals;
+      console.log(this.humanVitals)
+    })
   }
 
 }

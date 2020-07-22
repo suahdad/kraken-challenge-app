@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container center-body">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="javascript:void(0);" (click)="this.register=false;" id="login-form-link" [ngClass]="{'active':!this.register}">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="javascript:void(0);" (click)="this.register=true;"id="register-form-link" [ngClass]="{'active':this.register}">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<app-login @inOutAnimation *ngIf="!this.register"></app-login>	
+								<app-register @inOutAnimation *ngIf="this.register"></app-register>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

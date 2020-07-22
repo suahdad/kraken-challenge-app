@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-vitals',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-vitals.component.scss']
 })
 export class AddVitalsComponent implements OnInit {
-
   constructor() { }
 
+  @Output() core = new EventEmitter();
+
   ngOnInit(): void {
+  }
+
+  closeWindow() {
+    this.core.emit(null)
   }
 
 }

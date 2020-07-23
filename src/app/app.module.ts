@@ -9,9 +9,12 @@ import { AddVitalsComponent } from './add-vitals/add-vitals.component';
 import { ShowVitalsComponent } from './show-vitals/show-vitals.component';
 import { LoginMasterComponent } from './login-master/login-master.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { ReactiveFormsModule, FormsModule, ControlContainer } from '@angular/forms';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +24,21 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
     AddVitalsComponent,
     ShowVitalsComponent,
     LoginMasterComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor,multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

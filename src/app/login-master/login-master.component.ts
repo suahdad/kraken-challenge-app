@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { trigger, transition, animate, style } from '@angular/animations'
 @Component({
   selector: 'app-login-master',
@@ -18,8 +17,9 @@ import { trigger, transition, animate, style } from '@angular/animations'
 })
 export class LoginMasterComponent implements OnInit {
 
-  constructor() { }
 
+  constructor(){}
+  
   public register;
 
   ngOnInit(): void {
@@ -29,5 +29,6 @@ export class LoginMasterComponent implements OnInit {
     this.register = true;
     console.log('registerMode')
   }
+
 
 }

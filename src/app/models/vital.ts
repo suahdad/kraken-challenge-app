@@ -3,8 +3,8 @@ export class Vital {
     public organizationId: string;
     public businessUnitId: string;
     public deviceId: string;
-    public heartRate: string;
-    public temperature: string;
+    public heartRate: number;
+    public temperature: number;
     public partitionKey: string;
     public rowKey: string;
     public timeStamp: Date;

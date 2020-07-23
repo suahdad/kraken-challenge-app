@@ -100,11 +100,19 @@ body {
 
 .center-body {
 	margin: auto;
-	border: 1px solid green;
 	height: 100vh;
 	text-align: center;
 }
 
 .center {
 	display: inline-block;
+}
+
+.mainbody {
+	display: grid;
+	place-items: center;
+}
+
+.mainPanel {
+	width: 1000px;
 }

@@ -16,12 +16,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError(err => {
-      if(err.status >= 400 && err.status < 404) {
-        this.userService.logout();
-        location.reload(true);
+      if(request.url.search('login')){
+        if(err.status >= 400 && err.status < 404) {
+          this.userService.logout();
+          location.reload(true);
+        }
+        const error = err.error.message || err.statusText
+        return throwError(error);
       }
-      const error = err.error.message || err.statusText
-      return throwError(error);
     }));
   }
 }

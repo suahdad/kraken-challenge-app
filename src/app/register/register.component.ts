@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
+  public submitSuccess;
 
   constructor(private fb: FormBuilder,
     private userService: UserService) {
@@ -18,6 +19,8 @@ export class RegisterComponent implements OnInit {
       password:['', Validators.required],
       cpassword:['', Validators.required]
     },{validators: this.confirmPassword})
+    
+    this.registerForm.valueChanges.subscribe(data => this.submitSuccess=false)
    }
 
   ngOnInit(): void {
@@ -32,9 +35,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if(this.registerForm.valid){
-      this.userService.register(this.registerForm.value).subscribe(data =>
-        window.alert('success'));
-      location.reload()
+      this.userService.register(this.registerForm.value).subscribe(data =>{
+        this.submitSuccess = true;
+        location.reload();
+      })
     }
     else {
       Object.keys(this.registerForm.controls).map( control => {

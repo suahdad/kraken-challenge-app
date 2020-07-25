@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://10.88.140.133:52031/api',
+  // apiURL: 'http://10.88.140.133:52031/api',
+  apiURL: 'http://localhost:80/api',
   organizationid: 'bfdd7442-aeff-4e93-9c74eaac4654b80f',
   businessUnitId: 'ITS01',
   deviceId:'11a8bf88-11c3-4dfc-a3e4-a5a30f1ff9cf'

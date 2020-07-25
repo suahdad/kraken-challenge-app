@@ -1,13 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../environments/environment';
 import { VitalService } from '../services/vital.service';
+import { Vital } from '../models/vital';
+
 @Component({
-  selector: 'app-add-vitals',
-  templateUrl: './add-vitals.component.html',
-  styleUrls: ['./add-vitals.component.scss']
+  selector: 'app-peek-vital',
+  templateUrl: './peek-vital.component.html',
+  styleUrls: ['./peek-vital.component.scss']
 })
-export class AddVitalsComponent implements OnInit {
+export class PeekVitalComponent implements OnInit {
+
   public vitalForm: FormGroup
   public env = environment;
   public submitSuccess;
@@ -20,8 +23,8 @@ export class AddVitalsComponent implements OnInit {
       organizationId: [this.env.organizationid],
       businessUnitId: [this.env.businessUnitId],
       deviceId: [this.env.deviceId],
-      heartRate: ['',Validators.required],
-      temperature: ['',Validators.required]
+      heartRate: [this.vitalService.peekVitalData.heartRate,Validators.required],
+      temperature: [this.vitalService.peekVitalData.temperature,Validators.required]
     })
     this.vitalForm.valueChanges.subscribe(date => {
       this.isSubmitted = false
@@ -31,7 +34,7 @@ export class AddVitalsComponent implements OnInit {
 
   @Output() core = new EventEmitter();
   @Output() submitted = new EventEmitter();
-  
+
   ngOnInit(): void {
   }
 
@@ -51,6 +54,5 @@ export class AddVitalsComponent implements OnInit {
       });
     }
   }
-
 
 }

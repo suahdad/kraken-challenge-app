@@ -1,7 +1,14 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 .window {
-	width: 100vw;
-	height: 100vh;
+	width: 50vw;
+	height: 100%;
 	background: #0c0f1a;
+	box-sizing: border-box;
+	padding: 50px 0;
 }
 
 .form {
@@ -23,12 +30,34 @@
 	background-image: url('../../assets/Kraken\ Global\ Logo.png');
 	background-size: cover;
 	content: "";
-	&:hover {
-		opacity: 0;
-		z-index: -1;
-	}
 }
 
 .hidden {
 	display: none;
+
 }
+
+.map {
+	margin-top: 30px;
+	width: 100%;
+	text-align: center;
+	iframe {
+		margin: auto;
+		width: 630px;
+		height: 300px;
+	}
+}
+
+.details {
+	margin: 20px auto;
+	width: 630px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	.detail-box {
+		width: 130px;
+	}
+}
+
+
+

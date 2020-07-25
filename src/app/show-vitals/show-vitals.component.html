@@ -5,68 +5,113 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col col-xs-6">
-                    <h3 class="panel-title">Human Vitals</h3>
-                  </div>
-                  <div class="col col-xs-6 text-right">
-                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="this.addVital=true">Create New</button>
+<mat-drawer-container class="mainBody">
+  <mat-drawer #drawer [mode]="'push'">
+    <app-contact-page></app-contact-page>
+  </mat-drawer>
+  <mat-drawer-content class="content">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+  
+              <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col col-xs-6">
+                      <h3 class="panel-title">Human Vitals</h3>
+                    </div>
+                    <div class="col col-xs-6 text-right">
+                      <button type="button" class="btn btn-sm btn-primary btn-create" (click)="this.addVital=true">Create New</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <table class="table table-striped table-bordered table-list">
-                  <thead>
-                    <tr>
-                        <th><em class="fa fa-cog"></em></th>
-                        <th class="hidden-xs th-sm">Device ID</th>
-                        <th class="th-sm">Heart Rate</th>
-                        <th class="th-sm">Temperature</th>
-                        <th class="th-sm">Timestamp</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                          <tr *ngFor="let vital of humanVitals; let i = index">
-                            <td align="center">
-                              <a class="btn btn-default"><em class="fa fa-eye"></em></a>
-                            </td>
-                            <td class="hidden-xs">{{vital.deviceId}}</td>
-                            <td>{{vital.heartRate}}</td>
-                            <td>{{vital.temperature}}</td>
-                            <td>{{vital.timeStamp | date:"MM/dd/yyyy HH:mm:ss"}}</td>
-                          </tr>
-                        </tbody>
-                </table>
-            
-              </div>
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col col-xs-4">Page 1 of 5
-                  </div>
-                  <div class="col col-xs-4">
-                    <ul class="pagination pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                  </div>
+                <div class="panel-body">
+                  <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-bordered table-list" (matSortChange)="sortData($event)">
+                    <!-- settings -->
+                    <ng-container matColumnDef="settings">
+                      <th mat-header-cell *matHeaderCellDef> Settings </th>
+                      <td mat-cell *matCellDef="let vital">
+                        <a class="btn btn-default" (click)="this.vitalService.peekVitalData=vital;this.peekVital=true"><em class="fa fa-eye"></em></a>
+                      </td>
+                    </ng-container>
+                    
+                    <!-- deviceId -->
+                    <ng-container matColumnDef="deviceId">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Device Id </th>
+                      <td mat-cell *matCellDef="let vital"> {{vital.deviceId}} </td>
+                    </ng-container>
 
+                    <!-- heartrate -->
+                    <ng-container matColumnDef="heartRate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Heartrate </th>
+                      <td mat-cell *matCellDef="let vital"> {{vital.heartRate}} </td>
+                    </ng-container>   
+                    
+                    <!-- temperature -->
+                    <ng-container matColumnDef="temperature">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Temperature </th>
+                      <td mat-cell *matCellDef="let vital"> {{vital.temperature}} </td>
+                    </ng-container>
+
+                    <!-- timeStamp -->
+                    <ng-container matColumnDef="timeStamp">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp </th>
+                      <td mat-cell *matCellDef="let vital"> {{vital.timeStamp | date:"MM/dd/yyyy HH:mm:ss"}} </td>
+                    </ng-container>   
+                    
+                    <tr mat-header-row sty *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <!-- <thead>
+                      <tr>
+                          <th><em class="fa fa-cog"></em></th>
+                          <th mat-sort-header="deviceId" class="hidden-xs th-sm">Device ID</th>
+                          <th mat-sort-header="heartRate" class="th-sm">Heart Rate</th>
+                          <th mat-sort-header="temperature" class="th-sm">Temperature</th>
+                          <th mat-sort-header="timeStamp" class="th-sm">Timestamp</th>
+                      </tr> 
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let vital of sortedHumanVitals; let i = index">
+                              <td align="center">
+                                <a class="btn btn-default"><em class="fa fa-eye"></em></a>
+                              </td>
+                              <td class="hidden-xs">{{vital.deviceId}}</td>
+                              <td>{{vital.heartRate}}</td>
+                              <td>{{vital.temperature}}</td>
+                              <td>{{vital.timeStamp | date:"MM/dd/yyyy HH:mm:ss"}}</td>
+                            </tr>
+                          </tbody> -->
+                  </table>
+                  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              
                 </div>
+                <!-- <div class="panel-footer">
+                  <div class="row">
+                    <div class="col col-xs-4">Page 1 of 5
+                    </div>
+                    <div class="col col-xs-4">
+                      <ul class="pagination pull-right">
+                          <li><a href="#">«</a></li>
+                          <li><a href="#">»</a></li>
+                      </ul>
+                    </div>
+  
+                  </div>
+                </div> -->
               </div>
-            </div>
-
-</div></div></div>
-
-<app-add-vitals class="hover-form" (core)="addVital=false" *ngIf="addVital"></app-add-vitals>
-<app-contact-page class="hover-form" (close)="contactUs=false" *ngIf="contactUs"></app-contact-page>
-<div style="display: flex; flex-direction: row-reverse;">
-  <a href="javascript:void(0)" (click)="contactUs=true">Contact Us</a>
-  <a href="javascript:void(0)" (click)="logout()" style="margin: 0px 10px;">Logout</a>
-
+  
+  </div>
 </div>
-
+</div>
+  
+  <app-peek-vital class="hover-form" (core)="peekVital=false" *ngIf="peekVital"></app-peek-vital>
+  <app-add-vitals class="hover-form" (core)="addVital=false" (submitted)="getVitals()" *ngIf="addVital"></app-add-vitals>
+  <div style="display: flex; flex-direction: row-reverse; display: inline-block;">
+    <a href="javascript:void(0)" (click)="drawer.toggle()">Contact Us</a>
+    <a href="javascript:void(0)" (click)="logout()" style="margin: 0px 10px;">Logout</a>
+  
+  </div>
+  
+  </mat-drawer-content>
+  
+</mat-drawer-container>

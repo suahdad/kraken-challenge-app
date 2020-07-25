@@ -15,6 +15,11 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { ReactiveFormsModule, FormsModule, ControlContainer } from '@angular/forms';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { NotfoundComponent } from './notfound/notfound.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PeekVitalComponent } from './peek-vital/peek-vital.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ShowVitalsComponent,
     LoginMasterComponent,
     ContactPageComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    PeekVitalComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor,multi: true}

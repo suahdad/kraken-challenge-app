@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators'
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public loginError;
+  public submitSuccess;
+
   constructor(private fb: FormBuilder,
     private userService: UserService,
     private router: Router) { 
@@ -27,14 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.userService.login(this.loginForm.value).subscribe(data => {
-      if(data === 400 || data === 401 || data === 404) {
+      this.userService.login(this.loginForm.value).subscribe(data => {
+        console.log(data)
+        this.router.navigate(['home']);
+      },error => {
         this.loginError = true
-      } 
-
-    })
-    this.router.navigate(['home']);
-
+      })
 
 
   }

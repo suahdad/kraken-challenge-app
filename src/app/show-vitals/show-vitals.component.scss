@@ -1,4 +1,4 @@
-.panel-table .panel-body{
+  .panel-table .panel-body{
     padding:0;
   }
   
@@ -55,3 +55,28 @@
     position: fixed;
     top:0;
   }
+  .example-container {
+    width: 400px;
+    height: 200px;
+    margin: 12px;
+    border: 1px solid #555;
+  }
+  
+  mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .mainBody {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+

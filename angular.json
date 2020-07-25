@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "KrakenChallenge": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "KrakenChallenge"
+    }
+  },
+  "defaultProject": "KrakenChallenge",
+  "cli": {
+    "analytics": "057a8666-4d9e-445e-a373-c02a4974d9cd"
+  }
 }

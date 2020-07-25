@@ -17,21 +17,15 @@
                 <input disabled="true" type="text" name="device" id="device" tabindex="1" class="form-control" placeholder="Device ID" formControlName="deviceId">
             </div>
             <div class="form-group">
-                <input type="number" name="heartrate" id="heartrate" tabindex="2" class="form-control" placeholder="Heart Rate" formControlName="heartRate">
+                <input type="number" readonly name="heartrate" id="heartrate" tabindex="2" class="form-control" placeholder="Heart Rate" formControlName="heartRate">
             </div>
-            <p style="color: red" *ngIf="this.isSubmitted && this.vitalForm.controls.heartRate.errors">
-                Heart Rate is required.
-            </p>
             <div class="form-group">
-                <input type="number" name="temperature" id="temperature" tabindex="3" class="form-control" placeholder="Temperature" formControlName="temperature">
+                <input type="number" readonly name="temperature" id="temperature" tabindex="3" class="form-control" placeholder="Temperature" formControlName="temperature">
             </div>
-            <p style="color: red" *ngIf="this.isSubmitted && this.vitalForm.controls.temperature.errors">
-                Temperature is required.
-            </p>
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Add Vitals" (click)="postVital()">
+                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="OK" (click)="closeWindow()">
                     </div>
                 </div>
             </div>
